@@ -1,0 +1,138 @@
+{{ define "register" }}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Register – ITKANNADIGARU EKART</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+        crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ $.baseUrl }}/static/styles/styles.css">
+    <link rel='shortcut icon' type='image/x-icon' href='{{ $.baseUrl }}/static/favicon.ico' />
+    <style>
+        body {
+            background: #f8f9fa;
+            font-family: 'DM Sans', sans-serif;
+        }
+        .auth-header {
+            background: #212529;
+            padding: 16px 0;
+            margin-bottom: 48px;
+        }
+        .auth-header .brand {
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+        .auth-header .brand:hover {
+            color: #f8d253;
+            text-decoration: none;
+        }
+        .auth-card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+            padding: 40px 36px;
+            max-width: 420px;
+            margin: 0 auto;
+        }
+        .auth-card h2 {
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .auth-card .subtitle {
+            color: #6c757d;
+            margin-bottom: 28px;
+            font-size: 0.97rem;
+        }
+        .btn-auth {
+            background: #212529;
+            color: #fff;
+            border: none;
+            padding: 10px 0;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 4px;
+            width: 100%;
+            margin-top: 8px;
+        }
+        .btn-auth:hover {
+            background: #f8d253;
+            color: #212529;
+        }
+        .auth-switch {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.95rem;
+            color: #6c757d;
+        }
+        .auth-switch a {
+            color: #212529;
+            font-weight: 600;
+            text-decoration: underline;
+        }
+        .alert-auth {
+            font-size: 0.92rem;
+        }
+        label {
+            font-weight: 600;
+            font-size: 0.93rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-header">
+        <div class="container">
+            <a href="{{ $.baseUrl }}/" class="brand">ITKANNADIGARU EKART</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="auth-card">
+            <h2>Create account</h2>
+            <p class="subtitle">Join ITKANNADIGARU EKART today</p>
+
+            {{ if $.error }}
+            <div class="alert alert-danger alert-auth" role="alert">
+                {{ $.error }}
+            </div>
+            {{ end }}
+
+            <form method="POST" action="{{ $.baseUrl }}/register">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" name="username"
+                           placeholder="Choose a username" required autofocus
+                           value="{{ $.username }}">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" id="email" name="email"
+                           placeholder="Enter your email" required
+                           value="{{ $.email }}">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" name="password"
+                           placeholder="Create a password (min 6 characters)" required minlength="6">
+                </div>
+                <button type="submit" class="btn btn-auth">Create Account</button>
+            </form>
+
+            <div class="auth-switch">
+                Already have an account? <a href="{{ $.baseUrl }}/login">Sign in here</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+        integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>
+</body>
+</html>
+{{ end }}
